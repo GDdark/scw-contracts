@@ -171,9 +171,7 @@ contract BTCOwnershipRegistryModule is BaseAuthorizationModule {
         if (signature.length < 65) revert WrongSignatureLength();
 
         bytes32 signedHash = toBtcSignedMessageHash(dataHash);
-        address recovered = signedHash.recover(
-            signature
-        );
+        address recovered = signedHash.recover(signature);
 
         if (expectedSigner == recovered) {
             return true;
@@ -194,7 +192,20 @@ contract BTCOwnershipRegistryModule is BaseAuthorizationModule {
         return size > 0;
     }
 
-    function toBtcSignedMessageHash(bytes32 userOpHash) internal pure returns (bytes32) {
-        return sha256(abi.encodePacked(sha256(abi.encodePacked("\x18Bitcoin Signed Message:\n", "\x42", Strings.toHexString(uint256(userOpHash), 32)))));
+    function toBtcSignedMessageHash(
+        bytes32 userOpHash
+    ) internal pure returns (bytes32) {
+        return
+            sha256(
+                abi.encodePacked(
+                    sha256(
+                        abi.encodePacked(
+                            "\x18Bitcoin Signed Message:\n",
+                            "\x42",
+                            Strings.toHexString(uint256(userOpHash), 32)
+                        )
+                    )
+                )
+            );
     }
 }

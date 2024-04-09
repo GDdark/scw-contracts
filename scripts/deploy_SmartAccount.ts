@@ -4,12 +4,9 @@ async function main() {
   const provider = ethers.provider;
   const from = await provider.getSigner().getAddress();
 
-  const ret = await hre.deployments.deploy("SmartAccountFactory", {
+  const ret = await hre.deployments.deploy("SmartAccount", {
     from,
-    args: [
-      "0x79BB97E7D0aEF02d80e2124B3F053Ce5aE653AA4",
-      "0xda9f010412EB1D9A06A19b6E6C2ffB5866E712bC",
-    ],
+    args: ["0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789"],
     deterministicDeployment: true,
   });
 

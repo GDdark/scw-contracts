@@ -117,7 +117,7 @@ const config: HardhatUserConfig = {
       accounts: hardhatAccounts,
     },
     sepolia: {
-      url: 'https://sepolia.infura.io/v3/ea1d521dbd8940b7bcffd99f57fe45b4',
+      url: "https://sepolia.infura.io/v3/ea1d521dbd8940b7bcffd99f57fe45b4",
       chainId: 11155111,
       accounts: hardhatAccounts,
     },
@@ -127,8 +127,13 @@ const config: HardhatUserConfig = {
       accounts: hardhatAccounts,
       // : 200e9,
     },
+    particle_testnet: {
+      url: "https://rpc-testnet.particlenetwork.dev",
+      chainId: 2011,
+      accounts: hardhatAccounts,
+    },
     polygon_mumbai: {
-      url: 'https://polygon-mumbai.infura.io/v3/ea1d521dbd8940b7bcffd99f57fe45b4',
+      url: "https://polygon-mumbai.infura.io/v3/ea1d521dbd8940b7bcffd99f57fe45b4",
       chainId: 80001,
       accounts: hardhatAccounts,
     },

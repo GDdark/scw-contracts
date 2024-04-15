@@ -338,10 +338,15 @@ contract SmartAccount is
         bytes32 dataHash,
         bytes memory signature
     ) public view override returns (bytes4) {
-        (bytes memory moduleSignature, address validationModule) = abi.decode(
-            signature,
-            (bytes, address)
-        );
+        address validationModule = _modules[SENTINEL_MODULES];
+        bytes memory moduleSignature = signature;
+        if (signature.length != 65) {
+            (moduleSignature, validationModule) = abi.decode(
+                signature,
+                (bytes, address)
+            );
+        }
+
         if (address(_modules[validationModule]) != address(0)) {
             return
                 ISignatureValidator(validationModule).isValidSignature(
